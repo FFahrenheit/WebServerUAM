@@ -2,14 +2,21 @@
 // Created by ivan on 2/12/23.
 //
 
-#include "../include/WebServer.h"
-#include <stdio.h>
-#include <string.h>
-#include <unistd.h>
-#include <pthread.h>
-#include <stdlib.h>
+#include "web_server.h"
+#include "peticiones.h"
+
 
 pthread_mutex_t mutex;
+int socket1, socket2;
+
+
+void handler_SIGINT(int sig) {
+    close_socket(socket1);
+    
+    close_socket(socket2);
+    printf("todo cerrado\n");
+    exit(0);
+}
 
 /*
  * Pruebas: 100 veces * 100 requests
@@ -17,8 +24,9 @@ pthread_mutex_t mutex;
  * Reactivo: 49.96s
  * Pool: 22.53
  */
-void launch_server(struct Server * server)
+void run_server(struct WebServer * webServer)
 {
+    struct Server * server = &webServer->server;
     printf("Server built!\n");
     fflush(stdout);
 
@@ -26,9 +34,23 @@ void launch_server(struct Server * server)
     char * hello = "Hello!";
     int address_length = sizeof(server->address);
     int new_socket;
-    int childpid;
+    struct sigaction act1;
 
     //Iterativo
+    socket1 = 0;
+    socket2 = 0;
+
+
+    act1.sa_handler = handler_SIGINT;
+    sigemptyset(&(act1.sa_mask));
+    sigaddset(&(act1.sa_mask), SIGINT);
+    act1.sa_flags = 0;
+
+    if (sigaction(SIGINT, &act1, NULL) < 0) {
+        perror("sigint");
+        exit(EXIT_FAILURE);
+    }
+
 
     while(!0)
     {
@@ -38,18 +60,23 @@ void launch_server(struct Server * server)
                             (struct sockaddr *) &server->address,
                             (socklen_t *) &address_length);
 
-        read(new_socket, buffer, 30000);
-        printf("%s\n", buffer);
+        int read_len;
 
-        write(new_socket, hello, strlen(hello));
+        while((read_len = read(new_socket, buffer, 30000)) > 0){
+
+            procesa_peticion(new_socket, buffer, read_len, server);
+            // write(new_socket, hello, strlen(hello));
+            // printf("Sent response\n");
+        }
         close(new_socket);
+        printf("Conexion cerrada\n");
     }
-
 
     //Reactivo
     /*
     while(!0)
     {
+        int childpid;
         printf("----- ESPERANDO CONEXION -----\n");
 
         new_socket = accept(server->socket,
@@ -75,6 +102,7 @@ void launch_server(struct Server * server)
     }
     for(int i = 0; i < pool_length; i++)
     {
+        int childpid;
         if((childpid = fork()) == 0)
         {
             child_handle(i, server);
@@ -83,7 +111,6 @@ void launch_server(struct Server * server)
 
     while(!!1){};
      */
-
 }
 
 void child_handle_fork(int new_socket)
@@ -130,12 +157,11 @@ struct WebServer create_server(int port, int backlog)
             0,
             INADDR_ANY,
             port,
-            backlog,
-            launch_server);
+            backlog);
 
     struct WebServer web_server;
     web_server.server = server;
-    web_server.launch = launch_server;
+    web_server.launch = run_server;
 
     return web_server;
 }

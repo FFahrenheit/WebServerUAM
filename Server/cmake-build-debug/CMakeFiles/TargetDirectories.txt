@@ -1,3 +1,0 @@
-/home/ivan/CLionProjects/HTTPServer/cmake-build-debug/CMakeFiles/HTTPServer.dir
-/home/ivan/CLionProjects/HTTPServer/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/ivan/CLionProjects/HTTPServer/cmake-build-debug/CMakeFiles/rebuild_cache.dir
