@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "SOCKET.C": "cpp",
+        "peticiones.h": "c"
+    }
+}
