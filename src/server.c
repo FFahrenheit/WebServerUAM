@@ -3,11 +3,12 @@
 //
 
 
-#include "server.h"
+#include "../includes/server.h"
 
 
-struct Server server_constructor(int domain, int service, int protocol, unsigned long int interface, int port, int backlog)
-{
+
+
+struct Server server_constructor(int domain, int service, int protocol, unsigned long int interface, int port, int backlog){
     struct Server server;
 
     //Asignamos las propiedades del servidor
@@ -26,7 +27,7 @@ struct Server server_constructor(int domain, int service, int protocol, unsigned
     server.socket = open_socket(domain, service, protocol);
 
 
-    if((bind(server.socket,
+    if((bind_socket(server.socket,
             (struct sockaddr *) &server.address, //Cast a socketaddr *
             sizeof(server.address))) < 0)
     {
@@ -40,12 +41,16 @@ struct Server server_constructor(int domain, int service, int protocol, unsigned
         perror("No se pudo escuchar");
         exit(1);
     }
-
     return server;
 }
 
+int bind_socket(int socket, struct sockaddr * address, int address_len)
+{
+    return bind(socket, address, address_len);
+}
 
-int open_socket(int domain, int service, int protocol){
+int open_socket(int domain,int service,int protocol)
+{
 
     int socket_fd;
     socket_fd = socket(AF_INET, SOCK_STREAM, 0);
@@ -62,10 +67,10 @@ int open_socket(int domain, int service, int protocol){
     }
     return socket_fd;
 }
-int bind_socket(int socket_fd, int puerto);
-int accept_conn(int server_fd);
 
-void close_socket(int socket_fd){
+
+void close_socket(int socket_fd)
+{
     close(socket_fd);
     return;
 }

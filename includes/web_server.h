@@ -5,7 +5,11 @@
 #ifndef HTTPSERVER_WEBSERVER_H
 #define HTTPSERVER_WEBSERVER_H
 
-#include "server.h"
+
+#include "../includes/server.h"
+#include "../includes/peticiones.h"
+#include "../includes/http_utils.h"
+
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
@@ -18,11 +22,14 @@ struct WebServer
 {
     struct Server server;
     void (*launch)(struct WebServer * server);
+    char * server_root;
+    char * server_signature;
 };
 
-void child_handle_fork(int new_socket);
-void child_handle(int pool_id, struct Server * server);
-void launch_server(struct Server * server);
-struct WebServer create_server(int port, int backlog);
+struct ServerConfig read_config(char * filename);
+struct WebServer create_server();
+
+//void child_handle_fork(int new_socket);
+//void child_handle(int pool_id, struct Server * server);
 
 #endif //HTTPSERVER_WEBSERVER_H

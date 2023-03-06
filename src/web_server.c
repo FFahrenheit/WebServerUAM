@@ -2,8 +2,7 @@
 // Created by ivan on 2/12/23.
 //
 
-#include "web_server.h"
-#include "peticiones.h"
+#include "../includes/web_server.h"
 
 
 pthread_mutex_t mutex;
@@ -12,28 +11,23 @@ int socket1, socket2;
 
 void handler_SIGINT(int sig) {
     close_socket(socket1);
-    
     close_socket(socket2);
-    printf("todo cerrado\n");
+
+    printf("Sockets cerrados\n");
     exit(0);
 }
 
-/*
- * Pruebas: 100 veces * 100 requests
- * Iterativo: 22.74
- * Reactivo: 49.96s
- * Pool: 22.53
- */
 void run_server(struct WebServer * webServer)
 {
     struct Server * server = &webServer->server;
+
     printf("Server built!\n");
     fflush(stdout);
 
-    char buffer[30000];
-    char * hello = "Hello!";
+    //char * hello = "Hello";
     int address_length = sizeof(server->address);
     int new_socket;
+
     struct sigaction act1;
 
     //Iterativo
@@ -60,14 +54,18 @@ void run_server(struct WebServer * webServer)
                             (struct sockaddr *) &server->address,
                             (socklen_t *) &address_length);
 
-        int read_len;
+        socket1 = server->socket;
+        socket2 = new_socket;
 
-        while((read_len = read(new_socket, buffer, 30000)) > 0){
 
-            procesa_peticion(new_socket, buffer, read_len, server);
-            // write(new_socket, hello, strlen(hello));
-            // printf("Sent response\n");
-        }
+        procesa_cliente(new_socket, webServer->server_signature, webServer->server_root);
+
+        
+       /* while(read(new_socket, buffer, 30000) > 0){
+            printf("%s\n", buffer);
+            procesa_peticion(new_socket,buffer);
+            write(new_socket, hello, strlen(hello));
+        }*/
         close(new_socket);
         printf("Conexion cerrada\n");
     }
@@ -95,6 +93,7 @@ void run_server(struct WebServer * webServer)
     //Pool
     /*
     int pool_length = 5;
+    int childpid;
     // Creamos mutex para manejar la pool
     if(pthread_mutex_init(&mutex, NULL) != 0){
         perror("No se pudo crear el mutex");
@@ -102,7 +101,6 @@ void run_server(struct WebServer * webServer)
     }
     for(int i = 0; i < pool_length; i++)
     {
-        int childpid;
         if((childpid = fork()) == 0)
         {
             child_handle(i, server);
@@ -113,12 +111,37 @@ void run_server(struct WebServer * webServer)
      */
 }
 
+struct WebServer create_server()
+{
+    struct ServerConfig config = read_config("server.conf");
+
+    struct Server server = server_constructor(
+            AF_INET,
+            SOCK_STREAM,
+            0,
+            INADDR_ANY,
+            config.port,
+            config.max_clients);
+
+    struct WebServer web_server;
+    web_server.server = server;
+    web_server.launch = run_server;
+    web_server.server_root = config.root;
+    web_server.server_signature = config.name;
+
+    // printf("PORT:%d|\nBACKLOG:%d|\nNAME:%s|\nROOT:%s|\n", config.port, config.max_clients, web_server.server_signature, web_server.server_root);
+
+    return web_server;
+}
+
+
+/*
 void child_handle_fork(int new_socket)
 {
     char buffer[30000];
     char * hello = "Hello!";
     read(new_socket, buffer, 30000);
-    printf("%s\n", buffer);
+    //printf("%s\n", buffer);
 
     write(new_socket, hello, strlen(hello));
     close(new_socket);
@@ -127,7 +150,7 @@ void child_handle_fork(int new_socket)
 void child_handle(int pool_id, struct Server * server)
 {
     char buffer[30000];
-    char * hello = "Hello!";
+    char * hello = "HTTP/1.1 200 OK\r\nDate: Mon, 27 Jul 2009 12:28:53 GMT\r\nServer: Apache/2.2.14 (Win32)\r\nLast-Modified: Wed, 22 Jul 2009 19:15:56 GMT\r\nContent-Length: 88\r\nContent-Type: text/html\r\nConnection: Closed\r\n\r\n<html><body><h1>Hello, World!</h1></body></html>";
     int address_length = sizeof(server->address);
     int new_socket;
 
@@ -142,26 +165,10 @@ void child_handle(int pool_id, struct Server * server)
         pthread_mutex_unlock(&mutex);
 
         read(new_socket, buffer, 30000);
-        printf("%s\n", buffer);
+        //printf("%s\n", buffer);
 
         write(new_socket, hello, strlen(hello));
         close(new_socket);
     }
 }
-
-struct WebServer create_server(int port, int backlog)
-{
-    struct Server server = server_constructor(
-            AF_INET,
-            SOCK_STREAM,
-            0,
-            INADDR_ANY,
-            port,
-            backlog);
-
-    struct WebServer web_server;
-    web_server.server = server;
-    web_server.launch = run_server;
-
-    return web_server;
-}
+*/

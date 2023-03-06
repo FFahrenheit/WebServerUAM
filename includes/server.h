@@ -11,7 +11,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-struct Server
+ struct Server
 {
     int domain;
     int service;
@@ -25,9 +25,8 @@ struct Server
 };
 
 struct Server server_constructor(int domain, int service, int protocol, unsigned long int interface, int port, int backlog);
-int open_socket();
-int bind_socket(int socket_fd, int puerto);
-int accept_conn(int server_fd);
+int open_socket(int domain,int service,int protocol);
+int bind_socket(int socket, struct sockaddr * address, int size);
 void close_socket(int socket_fd);
 
 
