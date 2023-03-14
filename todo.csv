@@ -1,0 +1,10 @@
+Archivo,Notas,Comentada,Control de errores
+main.c,,si,si
+peticiones.h,,si,si
+peticiones.c,,si,si
+http_utils.h,,si,si
+http_utils.c,,si,si
+server.c,,si,si
+server.h,,si,si
+web_server.h,,si,si
+web_server.c,,si,si

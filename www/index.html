@@ -36,7 +36,7 @@
         Nota importante: <a href="IMPORTANTE.txt">enlace</a>
         
         <p></p>
-        Vídeo largo de 2GB: <a href="media/Demo.mp4">enlace</a>
+        Vídeo largo de 2GB: <a href="media/video.mp4">enlace</a>
         
         <p></p>
         Texto .txt: <a href="media/texto.txt">enlace</a>
@@ -78,6 +78,25 @@
                     <form action="scripts/test.php" method="post">
                       <input type="hidden" name="variablePOST" value="hola mundo POST">
                       <input type="submit" value="POST .php">
+                    </form>
+                </td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <td>
+                    <form action="scripts/saludo.py" method="GET">
+                        <input type="text" name="nombre" placeholder="Ingresar nombre">
+                        <input type="submit" value="Saludar">
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <form action="scripts/convertir.py" method="POST">
+                        <input type="number" name="temperatura" placeholder="Ingresar °C a convertir °F">
+                        <input type="submit" value="Convertir">
                     </form>
                 </td>
             </tr>

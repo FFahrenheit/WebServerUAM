@@ -24,3 +24,5 @@ print("Fin de datos")
 
 
 print("\n\nFin del script")
+
+print("\r\nEsto no es visible despues")
