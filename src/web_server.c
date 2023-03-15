@@ -46,7 +46,7 @@ void run_server(struct WebServer *webServer)
     printf("\n\n\n╔═══╗╔╗────────╔╗─╔╗──╔╗─────\n║╔═╗╠╝╚╗───────║║─║║──║║─────\n║╚══╬╗╔╬══╦╗─╔╗║║─║╠══╣║╔╗─╔╗\n╚══╗║║║║╔╗║║─║║║║─║║╔╗║║║║─║║\n║╚═╝║║╚╣╔╗║╚═╝║║╚═╝║╚╝║╚╣╚═╝║\n╚═══╝╚═╩╝╚╩═╗╔╝╚═══╩═╗╠═╩═╗╔╝\n──────────╔═╝║─────╔═╝║─╔═╝║─\n──────────╚══╝─────╚══╝─╚══╝─\n\n\n\n");
     printf("Server built!\n");
     fflush(stdout);
-    //printf("\n\n\n            ╔═══╗╔╗        ╔╗ ╔╗  ╔╗     \n            ║╔═╗╠╝╚╗       ║║ ║║  ║║     \n            ║╚══╬╗╔╬══╦╗ ╔╗║║ ║╠══╣║╔╗ ╔╗\n            ╚══╗║║║║╔╗║║ ║║║║ ║║╔╗║║║║ ║║\n            ║╚═╝║║╚╣╔╗║╚═╝║║╚═╝║╚╝║╚╣╚═╝║\n            ╚═══╝╚═╩╝╚╩═╗╔╝╚═══╩═╗╠═╩═╗╔╝\n                      ╔═╝║     ╔═╝║ ╔═╝║ \n                      ╚══╝     ╚══╝ ╚══╝ \n            \n\n\n");
+
     /* Iterativo
     struct Server * server = &webServer->server;
     int address_length = sizeof(server->address);
@@ -134,9 +134,7 @@ void run_server(struct WebServer *webServer)
         }
     }
 
-    while (!!1)
-    {
-    };
+    while (!!1){};
 }
 
 struct WebServer create_server()

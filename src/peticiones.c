@@ -100,7 +100,6 @@ int procesa_peticion(int socket_fd, char *server_name, char *server_root, char *
   if (strcmp(path, "/") == 0 && strcmp(method, "GET") == 0) // Caso GET al servidor
   {
     sprintf(path, "/index.html");
-    //    printf("MAIN ROOT == INDEX\n");
   }
 
   //  printf("METHOD : |%.*s|\n", (int) req->method_len, req->method);
@@ -132,7 +131,6 @@ int procesa_peticion(int socket_fd, char *server_name, char *server_root, char *
   //  printf("Body: |%s|\n", body);
 
   sprintf(result_path, "%s%s", server_root, path);
-  //  printf("Real path: %s\n", result_path);
 
   // con el metodo ya leido se selecciona el tipo de funcion
 
@@ -161,7 +159,6 @@ int procesa_peticion(int socket_fd, char *server_name, char *server_root, char *
   free(body);
 
   printf("Peticion [%s] a [%s] con respuesta [%d]\n", method, path, ctrl);
-  // printf("END OF REQUEST\n");
   return ctrl;
 }
 
@@ -239,13 +236,13 @@ int procesa_get(int socket_fd, PeticionHTTP *req, char *path, char *server_name,
   }
   else
   {
-    // ENVIO DE UN ARCHIVO
 
+    // Si el archivo no existe
     get_file = fopen(path, "rb");
     if (!get_file)
     {
       fprintf(stderr, "ERROR abriendo el archivo\n");
-      return ctrl;
+      return error_response(socket_fd, req, "500 Internal Server Error", server_name);
     }
 
 
@@ -287,7 +284,6 @@ int procesa_get(int socket_fd, PeticionHTTP *req, char *path, char *server_name,
   send(socket_fd, buffer, strlen(buffer), 0);
 
   // leer el archivo en chunks y enviarlos
-
   if (is_script == 1)
   {
     send(socket_fd, script_output, file_size, 0);
@@ -349,7 +345,6 @@ int procesa_post(int socket_fd, PeticionHTTP *req, char *path, char *body, char 
   }
 
   // Correr script
-  // printf("Run script\n");
   char *lang = strcmp(ext, ".py") == 0 ? "python3" : "php";
 
   script_output = run_script(lang, path, body);
@@ -394,13 +389,11 @@ int procesa_post(int socket_fd, PeticionHTTP *req, char *path, char *body, char 
 }
 
 /*esta funcion se ocupa de generar una response para options*/
-
 int procesa_options(int socket_fd, PeticionHTTP *req, char *path, char *server_name, char *real_path)
 {
   char buffer[TAM_BUFFER] = {0}, response[TAM_BUFFER] = {0};
   char *now = get_time(NULL);
   char *allowed;
-  int ctrl = 1;
 
   if (!req || !path || !server_name || socket_fd < 0 || !real_path)
   {
@@ -411,8 +404,6 @@ int procesa_options(int socket_fd, PeticionHTTP *req, char *path, char *server_n
   {
     return error_response(socket_fd, req, "404 Not Found", server_name);
   }
-
-  // printf("OPTIONS PATH: %s\n", path);
 
   // Si es script
   if (strstr(path, "/scripts/") != NULL)
@@ -427,7 +418,7 @@ int procesa_options(int socket_fd, PeticionHTTP *req, char *path, char *server_n
   {
     allowed = "GET, OPTIONS";
   }
-  
+
   // montaje de la response
   sprintf(response, "HTTP/1.%d 200 OK\r\n", req->minor_version);
   strcat(buffer, response);
@@ -435,7 +426,7 @@ int procesa_options(int socket_fd, PeticionHTTP *req, char *path, char *server_n
   strcat(buffer, response);
   sprintf(response, "Server: %s\r\n", server_name);
   strcat(buffer, response);
-  sprintf(response, "Allow: %s\r\n", allowed); // TO be changed depending on route
+  sprintf(response, "Allow: %s\r\n", allowed);
   strcat(buffer, response);
   sprintf(response, "Content-Length: 0\r\n");
   strcat(buffer, response);
