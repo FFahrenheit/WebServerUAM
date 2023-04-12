@@ -1,4 +1,4 @@
-# Práctica 02: Saimazoom
+# Práctica 01: Servidor Web
 
 ## Materia
 * Redes de Comunicaciones II
@@ -11,7 +11,8 @@
 * Oscar Navalón Navarro
 
 ## Contenidos
-1. [**Introducción**](https://git.eps.uam.es/redes2/2023/2311/01/practica2/-/wikis/Introducci%C3%B3n)
-2. [**Definición del proyecto**](https://git.eps.uam.es/redes2/2023/2311/01/practica2/-/wikis/Definici%C3%B3n-del-proyecto)
-3. [**Implementación**](https://git.eps.uam.es/redes2/2023/2311/01/practica2/-/wikis/Implementaci%C3%B3n)
-4. [**Conclusiones**](https://git.eps.uam.es/redes2/2023/2311/01/practica2/-/wikis/Conclusiones)
+1. [**Introducción**](https://git.eps.uam.es/redes2/2023/2311/01/practica1/-/wikis/Introducci%C3%B3n)
+2. [**Diseño**](https://git.eps.uam.es/redes2/2023/2311/01/practica1/-/wikis/Dise%C3%B1o)
+3. [**Desarrollo técnico**](https://git.eps.uam.es/redes2/2023/2311/01/practica1/-/wikis/Desarrollo-t%C3%A9cnico)
+4. [**Conclusiones**](https://git.eps.uam.es/redes2/2023/2311/01/practica1/-/wikis/Conclusiones)
+5. [**Recursos para servidor**](https://git.eps.uam.es/redes2/2023/2311/01/practica1/-/wikis/Recursos-para-servidor)

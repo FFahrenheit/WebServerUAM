@@ -1,0 +1,16 @@
+Durante el desarrollo de este servidor HTTP, se siguieron diversas etapas para lograr su correcto funcionamiento. En primer lugar, se desarrolló la gestión de sockets para un único cliente, implementando un servidor iterativo, esto para comprobar que hemos podido establecer una conexión de forma correcta con otros equipos.
+
+Posteriormente, se implementó tanto el servidor reactivo como uno con  pool de procesos, estos serán de utilidad en el futuro para que nuestro servidor sea más eficiente. Sin embargo, fueron comentados para simplificar el desarrollo del servidor HTTP con el servidor iterativo, en donde tendremos un procesamiento secuencial que permitirá hacer una depuración más sencilla.
+Se comenzó con el manejo del navegador a través de una response pre-montada que mostraba un `"Hello World"` en el navegador, esto para comprobar la idea de cómo proseguiremos (manejo de respuestas, headers, etc,). 
+
+Luego, con la ayuda de la librería `picohttpparser`, la cual es una librería muy ligera y sencilla para procesar los headers HTTP, se desarrolló la estructura principal para el procesamiento de peticiones, comprobando la prueba de concepto de lectura de Headers, de body, del path y verbo en cuestión, y recepción correcta de peticiones HTTP en general.
+
+A continuación, se implementó el verbo GET únicamente para las solicitudes HTML, es decir, solo un archivo de texto, esto para tener un avance más visual. En paralelo, se desarrolló el archivo server.conf y se implementó su lectura y procesamiento y asignamiento de datos a las configuraciones correctas del servidor, ya que estas funcionalidades resultan independientes en su desarrollo, uno puede continuar con las peticiones sin tener el archivo de configuración, y el archivo de configuración podría ser desarrollado con la respuesta pre-montada.
+
+Se procedió a la implementación del verbo GET para cualquier tipo de recurso para continuar con la visualización de resultados y para proceder con el resto de verbos (POST y OPTIONS) y al control de errores en el servidor, especialmente el error 404 y 403, que son importantes previos al manejo de más solicitudes.  
+
+Parte del desarrollo del método POST fue implementar la ejecución de scripts `.py` y `.php`, los cuales se hicieron primeramente de forma aislada, probando que se podía ejecutar un script desde C, esto para simplificar la depuración, para después ser procesado en el servidor, tomando el algoritmo que se comprobó que servía y agregándole a la petición de scripts.. 
+
+Finalmente, se llevó a cabo la última etapa de limpieza de código y ultimación del mismo, en donde se identificaron áreas de mejora dentro del servidor y posibles errores que fueron solucionados, como la opción de listar directorios o el reuso de direcciones de un socket.
+
+Cada una de estas etapas fue esencial para el correcto funcionamiento del servidor HTTP y para lograr cumplir con los objetivos propuestos, por lo cual se tuvo en general un enfoque secuencial paralelizado en algunos procesos (como lectura de configuración).

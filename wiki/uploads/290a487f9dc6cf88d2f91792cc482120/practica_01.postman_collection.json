@@ -1,0 +1,515 @@
+{
+	"info": {
+		"_postman_id": "eb1d5426-b2a1-4fe8-adbf-ae867220e716",
+		"name": "REDES II",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Root (index.html)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "MyHeader",
+						"value": "",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{servidor}}/index.html",
+					"host": [
+						"{{servidor}}"
+					],
+					"path": [
+						"index.html"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Imagen",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{servidor}}/media/img_big.jpeg",
+					"host": [
+						"{{servidor}}"
+					],
+					"path": [
+						"media",
+						"img_big.jpeg"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Archivo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{servidor}}/media/Tarea.pdf",
+					"host": [
+						"{{servidor}}"
+					],
+					"path": [
+						"media",
+						"Tarea.pdf"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "404 Not Found",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{servidor}}/media/123.docx",
+					"host": [
+						"{{servidor}}"
+					],
+					"path": [
+						"media",
+						"123.docx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "405 Method Not Allowed",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{servidor}}/",
+					"host": [
+						"{{servidor}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Options - Server",
+			"request": {
+				"method": "OPTIONS",
+				"header": [],
+				"url": {
+					"raw": "{{servidor}}/",
+					"host": [
+						"{{servidor}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Options - Recurso",
+			"request": {
+				"method": "OPTIONS",
+				"header": [],
+				"url": {
+					"raw": "{{servidor}}/media/texto.txt",
+					"host": [
+						"{{servidor}}"
+					],
+					"path": [
+						"media",
+						"texto.txt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Options - Script",
+			"request": {
+				"method": "OPTIONS",
+				"header": [],
+				"url": {
+					"raw": "{{servidor}}/scripts/test.php",
+					"host": [
+						"{{servidor}}"
+					],
+					"path": [
+						"scripts",
+						"test.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PHP Script",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "aa",
+							"value": "aaa",
+							"type": "default"
+						},
+						{
+							"key": "bbb",
+							"value": "Hola mundo!",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{servidor}}/scripts/test.php?var1=2&var2=2",
+					"host": [
+						"{{servidor}}"
+					],
+					"path": [
+						"scripts",
+						"test.php"
+					],
+					"query": [
+						{
+							"key": "var1",
+							"value": "2"
+						},
+						{
+							"key": "var2",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PHP Script",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "aa",
+							"value": "aaa",
+							"type": "default"
+						},
+						{
+							"key": "bbb",
+							"value": "Hola mundo!",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{servidor}}/scripts/test.php?var1=2&var2=2",
+					"host": [
+						"{{servidor}}"
+					],
+					"path": [
+						"scripts",
+						"test.php"
+					],
+					"query": [
+						{
+							"key": "var1",
+							"value": "2"
+						},
+						{
+							"key": "var2",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Python Script",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "aa",
+							"value": "aaa",
+							"type": "default"
+						},
+						{
+							"key": "bbb",
+							"value": "Hola mundo",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{servidor}}/scripts/test.py?var=hola&x=1234",
+					"host": [
+						"{{servidor}}"
+					],
+					"path": [
+						"scripts",
+						"test.py"
+					],
+					"query": [
+						{
+							"key": "var",
+							"value": "hola"
+						},
+						{
+							"key": "x",
+							"value": "1234"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PHP Parser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "aa",
+							"value": "aaa",
+							"type": "default"
+						},
+						{
+							"key": "bbb",
+							"value": "Hola mundo",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{servidor}}/scripts/parser.php?var=adios%20mundo&x=1234",
+					"host": [
+						"{{servidor}}"
+					],
+					"path": [
+						"scripts",
+						"parser.php"
+					],
+					"query": [
+						{
+							"key": "var",
+							"value": "adios%20mundo"
+						},
+						{
+							"key": "x",
+							"value": "1234"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Python Parser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "aa",
+							"value": "aaa",
+							"type": "default"
+						},
+						{
+							"key": "bbb",
+							"value": "Hola mundo",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{servidor}}/scripts/parser.py?var=adios%20mundo&x=1234",
+					"host": [
+						"{{servidor}}"
+					],
+					"path": [
+						"scripts",
+						"parser.py"
+					],
+					"query": [
+						{
+							"key": "var",
+							"value": "adios%20mundo"
+						},
+						{
+							"key": "x",
+							"value": "1234"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Python Script",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "aa",
+							"value": "aaa",
+							"type": "default"
+						},
+						{
+							"key": "bbb",
+							"value": "Hola mundo!",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{servidor}}/scripts/test.py?var=hola&x=1234",
+					"host": [
+						"{{servidor}}"
+					],
+					"path": [
+						"scripts",
+						"test.py"
+					],
+					"query": [
+						{
+							"key": "var",
+							"value": "hola"
+						},
+						{
+							"key": "x",
+							"value": "1234"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Script de saludo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{servidor}}/scripts/saludo.py?nombre=Ivan y Oscar",
+					"host": [
+						"{{servidor}}"
+					],
+					"path": [
+						"scripts",
+						"saludo.py"
+					],
+					"query": [
+						{
+							"key": "nombre",
+							"value": "Ivan y Oscar"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Script de conversion C a F",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "temperatura",
+							"value": "10",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{servidor}}/scripts/convertir.py?nombre=Ivan y Oscar",
+					"host": [
+						"{{servidor}}"
+					],
+					"path": [
+						"scripts",
+						"convertir.py"
+					],
+					"query": [
+						{
+							"key": "nombre",
+							"value": "Ivan y Oscar"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "405 Method Not Allowed para archivo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{servidor}}/media/Tarea.pdf",
+					"host": [
+						"{{servidor}}"
+					],
+					"path": [
+						"media",
+						"Tarea.pdf"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar directorio",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{servidor}}/media/",
+					"host": [
+						"{{servidor}}"
+					],
+					"path": [
+						"media",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

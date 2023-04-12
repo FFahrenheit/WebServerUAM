@@ -1,12 +1,19 @@
-# 4. Conclusiones
+## Conclusiones técnicas
+En este proyecto se ha logrado implementar un servidor HTTP básico capaz de manejar solicitudes HTTP/1.1 y servir archivos a los clientes.
 
-# 4.1 Conclusiones técnicas
-En primer lugar, se ha podido comprobar la utilidad y eficacia de la implementación de colas de mensajes en el desarrollo de aplicaciones distribuidas. El uso de este patrón de comunicación permitió separar la lógica de los diferentes componentes del sistema, lo que facilitó su desarrollo y su escalabilidad.
-Por otra parte, se destaca la importancia de la implementación de un sistema de control de errores y excepciones en una aplicación compleja como esta. Gracias a la detección y manejo adecuado de estos errores, se logró reducir el impacto de posibles fallos en el sistema y mantener su estabilidad y fiabilidad.
-Otro punto a destacar es la implementación de la funcionalidad de cancelación de pedidos, el cual hizo que se tuviese que pensar el proyecto de forma holística, lo cual ayudó a entender mejor cómo funcionan los sistemas basados en microservicios.
+Se han respetado todos los requisitos funcionales para el desarrollo.
 
-# 4.2 Conclusiones personales
-En primer lugar, es importante destacar el valor de trabajar en equipo y la importancia de una buena planificación y organización. A lo largo del desarrollo de Saimazoom, se encontraron diversos desafíos técnicos que se pudieron superar gracias al trabajo en equipo y al esfuerzo conjunto.
-Por otro lado, el uso de herramientas y tecnologías actuales, como el sistema de colas de mensajes, permitió desarrollar un proyecto moderno y con un alto nivel de escalabilidad.
-Asimismo, la implementación de buenas prácticas de programación, como el uso de patrones de diseño y la gestión adecuada de las bases de datos, contribuyeron a la calidad del proyecto y facilitaron su mantenimiento.
-Finalmente, el proyecto Saimazoom fue una experiencia enriquecedora que permitió poner en práctica los conocimientos adquiridos a lo largo del curso y desarrollar habilidades técnicas y de trabajo en equipo que serán útiles en el futuro.
+Se ha logrado un manejo adecuado de las excepciones y errores, lo que aumenta la robustez del servidor y su capacidad para seguir funcionando incluso en situaciones imprevistas.
+
+En conclusión, este proyecto ha permitido profundizar en el funcionamiento de los servidores HTTP y en el manejo de las solicitudes y respuestas, lo que ha resultado en una implementación básica pero funcional de un servidor HTTP.
+
+Es posible seguir extendiendo este mismo proyecto para soporte de otros verbos, manejo de autenticación, entre otras funcionalidades de HTTP, ya que se cuenta con una base sólida. 
+
+## Conclusiones personales
+En cuanto a las conclusiones personales, podemos decir que hemos aprendido mucho trabajando juntos en este proyecto. Uno de los mayores desafíos fue asegurarnos de que estuviésemos alineados en cuanto a los objetivos y la forma en que debíamos abordar el trabajo.
+
+Además, pudimos experimentar con diferentes enfoques y técnicas de programación, lo que nos permitió mejorar nuestras habilidades y aprender cosas nuevas. Nos sentimos satisfechos de haber logrado construir un servidor HTTP completamente funcional que cumple con los requisitos establecidos.
+
+Por otro lado, también nos enfrentamos a algunos problemas técnicos y tuvimos que trabajar duro para superarlos. Aunque esto a veces fue frustrante, sentimos que aprendimos mucho al enfrentar estos desafíos y resolver los problemas, sobre todo al manejar un lenguaje como lo es C en donde no tenemos tantas simplicidades y toca trabajar más duro. 
+
+Como equipo tuvimos una comunicación asertiva y pudimos aprender mucho del otro, siempre manteniendo una carga de trabajo similar y mejorando el proyecto continuamente entre pares. 
