@@ -1,0 +1,10 @@
+celda = "D"
+inicio_celda = 8
+inicio_indice = 7
+cambio = 4
+fin_celda = 67
+
+for index, i in enumerate(range(inicio_celda, fin_celda + 1)):
+    if index % cambio == 0 and index != 0:
+        inicio_indice += cambio
+    print(f"=D{i}/D${inicio_indice} - 1")
